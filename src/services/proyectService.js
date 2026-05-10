@@ -3,11 +3,11 @@ const proyectService = ( () => {
     // Array de proyectos para simular una base de datos
     let proyectos = [
         // Categorias: "En proceso", "Finalizado", "En espera", "Cancelado", "En revisión"
-        { id: 1, titulo: "Sistema de Gestión de Biblioteca", categoria: "Programación", estado: "En proceso"},
-        { id: 2, titulo: "Aplicación para Organización de Tareas", categoria: "Programación", estado: "Finalizado"},
-        { id: 3, titulo: "Sitio Web Institucional", categoria: "Diseño", estado: "En espera" },
-        { id: 4, titulo: "Registro de Alumnos", categoria: "Programación", estado: "En revisión" },
-        { id: 5, titulo: "Plataforma de Cursos Online", categoria: "Educación", estado: "Cancelado" }
+        { id: 1, titulo: "Sistema de Gestión de Biblioteca", categoria: "Programación", estado: "En proceso", imagen: "/img/biblioteca.png"},
+        { id: 2, titulo: "Aplicación para Organización de Tareas", categoria: "Programación", estado: "Finalizado", imagen: "/img/tareas.png" },
+        { id: 3, titulo: "Sitio Web Institucional", categoria: "Diseño", estado: "En espera", imagen: "/img/sitioweb.png" },
+        { id: 4, titulo: "Registro de Alumnos", categoria: "Programación", estado: "En revisión", imagen: "/img/regist.png" },
+        { id: 5, titulo: "Plataforma de Cursos Online", categoria: "Educación", estado: "Cancelado", imagen: "/img/cursos-online.jpg" }
     ];
 
     // Funciones para manejar los proyectos

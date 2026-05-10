@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import proyectService from '../services/proyectService.js';
+import "../css/navbar.css";
+import "../css/header.css"
 
 const ListaProyectos = () => {
     // Estado para almacenar la lista de proyectos
@@ -14,34 +16,55 @@ const ListaProyectos = () => {
         setProyectos(proyectService.obtenerProyectos()); // Actualizamos el estado local de proyectos
     };
     return(
-        <div className='container'>
-            <h2>Lista de Proyectos</h2>
-            <section className='grid-proyectos'>
-                <div>
-                    {   // Se mapea el array de proyectos para renderizar cada proyecto como una tarjeta
-                        proyectos.map(element => (
+        <div className="container">
+            <h2 className="titulo">Lista de Proyectos</h2>
+            <section className="cards">
+                {
+                    proyectos.map(element => (
 
-                            // Cada proyecto se renderiza dentro de un artículo con una clase "tarjeta"
-                            <article key={element.id} className='tarjeta'> 
-                                <div className='tarjeta-contenido'>
-                                    <h3>{element.titulo}</h3>
+                        <article
+                            key={element.id}
+                            className="proyecto-card"
+                        >
 
-                                    {/* El className se establece dinámicamente según el estado del proyecto.
-                                        "badge" lo necesitamos para que cambie el estilo según el estado del proyecto */}
-                                    <span className= { `badge ${element.estado === "Finalizado" ? "done" : "process"}`}>
-                                        {element.estado}
-                                    </span>
-                                    <p> <strong>Categoria:</strong> {element.categoria}</p>
+                            {/* Imagen */}
+                            <img
+                                src={element.imagen}
+                                alt={element.titulo}
+                                className="card-img"
+                            />
 
-                                </div>
-                                {/* Botón para eliminar el proyecto (1)
-                                    Al hacer clic, se llama a la función handlerEliminar con el ID del proyecto donde se hizo clic*/}
-                                <button className='btn-delete' onClick={ () => handlerEliminar(element.id) }>Eliminar </button>
-                            </article>
-                            )
-                        )
-                    }
-                </div>
+                            {/* Contenido */}
+                            <div className="card-info">
+
+                                <h4>{element.titulo}</h4>
+
+                                <span
+                                    className={`badge ${
+                                        element.estado === "Finalizado"
+                                        ? "done"
+                                        : "process"
+                                    }`}
+                                >
+                                    {element.estado}
+                                </span>
+
+                                <p className="texto-categoria">
+                                    Categoría: {element.categoria}
+                                </p>
+
+                                <button
+                                    className="btn-outline"
+                                    onClick={() => handlerEliminar(element.id)}
+                                >
+                                    Eliminar
+                                </button>
+
+                            </div>
+
+                        </article>
+                    ))
+                }
             </section>
         </div>
     )      

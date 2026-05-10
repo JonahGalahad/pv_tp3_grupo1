@@ -1,174 +1,273 @@
-/* Variables CSS para consistencia visual */
-:root {
-    --primary-color: #3b82f6;
-    --primary-hover: #1d4ed8;
-    --primary-active: #le3a8a;
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --border-color: #cbd5e1;
-    --border-radius: 8px;
-    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Estructura general de la vista */
-.container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: var(--bg-color);
-    border-radius: var(--border-radius) ;
-    box-shadow: var(--box-shadow) ;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-main);
+body{
+    font-family: var(--fuente-principal);
+
+    background-color: var(--bg);
+
+    color: var(--texto-negro);
 }
 
-.container h2{
-    margin-bottom: 1.5rem;
-    font-size: 1.75rem;
-    color: var(--text-main);
+/* =========================
+   CONTENEDOR
+========================= */
+
+.container{
+
+    max-width: 75%;
+
+    margin: auto;
+
+    padding-top: 30px;
+
+
+    background-color: rgba(240, 255, 255, 0.452);
+
+    border-radius: 25px;
+
 }
 
-/* Formulario y barra de búsqueda */
-.container section {
+/* =========================
+   TITULO
+========================= */
+
+.titulo{
+
+    padding-left: 5%;
+
+    margin-bottom: 25px;
+
+    font-size: 1.3rem;
+
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
 
-form {
-    display: flex;
-    gap: 0.75rem;
     align-items: center;
+
+    gap: 12px;
 }
 
-input {
-    padding: 0.65rem 0.85rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 0.95rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+.titulo::before{
+    content: '';
+
+    width: 5px;
+
+    height: 22px;
+
+    background-color: var(--acento);
+
+    border-radius: 10px;
 }
 
-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
 
-button {
-    padding: 0.65rem 1.25rem;
-    background-color: var(--primary-color);
-    color:white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
+/* =========================
+   GRID
+========================= */
 
-/* Interactividad CSS: hover, focus, active */
-button:hover {
-    background-color: var(--primary-hover);
-}
+.cards{
 
-button:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-button:active {
-    background-color: var(--primary-active);
-    transform:scale(0.98);
-}
-
-/* CSS grid para la estrctura de las tarjetas*/
-.grid-proyectos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(500px, 500px));
+
+    justify-content: center;
+
+    gap: 24px;
+
+    padding: 0 5% 50px 5%;
+
 }
 
-/* Flexbox para los componentes internos de las tarjetas */
-.tarjeta {
-    background-color: var(--card-bg);
-    padding: 1.25rem;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--box-shadow);
+/* =========================
+   CARD
+========================= */
+
+.proyecto-card{
+
     display: flex;
+
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    }
 
-.tarjeta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px -3px Orgba(0, 0, 0, 0.08);
+    background-color: var(--blanco);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,0.08);
+
+    transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.tarjeta-contenido h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-main);
-}
-    
-.tarjeta-contenido p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    }
+.proyecto-card:hover{
 
-/* Estilos para el formulario extandido */
-.form-section {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 2rem;
+    transform: translateY(-8px);
+
+    box-shadow:
+    0 12px 24px rgba(0,0,0,0.12);
 }
 
-.project-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr 150px auto;
-    gap: 10px;
+/* =========================
+   IMAGEN
+========================= */
+
+.card-img{
+
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+    display: block;
 }
 
-select{
-    padding: 0.65rem;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    background:white;
+/* =========================
+   INFO CARD
+========================= */
+
+.card-info{
+
+    padding: 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex-grow: 1;
 }
 
-.badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 12px;
+.card-info h4{
+
+    font-size: 1.3rem;
+
+    margin-bottom: 15px;
+
+    color: var(--texto-negro);
+
+    line-height: 1.3;
+}
+
+.card-info p{
+
+    color: var(--gris-secundario);
+
+    line-height: 1.6;
+}
+
+/* =========================
+   BADGE
+========================= */
+
+.badge{
+
+    width: fit-content;
+
+    padding: 7px 14px;
+
+    border-radius: 999px;
+
     font-size: 0.75rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
 }
 
-.badge.process { background: #dcfce7; color: #166534; } /* Verde suave */
-.badge.done { background: #fee2e2; color: #991b1b; }/* Rojo suave */
+.process{
 
-.btn-delete {
-    background-color: #ef4444;
-    margin-top: 10px;
+    background-color: #dbeafe;
+
+    color: #1d4ed8;
 }
 
-.btn-delete:hover {
-    background-color: #b91c1c;
+.done{
+
+    background-color: #dcfce7;
+
+    color: #166534;
 }
 
-/*
-Responsive para el formulario */
+/* =========================
+   CATEGORIA
+========================= */
+
+.texto-categoria{
+
+    color: var(--acento);
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+/* =========================
+   BOTON
+========================= */
+
+.btn-outline{
+
+    margin-top: auto;
+
+    padding: 12px 0;
+
+    border: 2px solid var(--texto-negro);
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--texto-negro);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.1s;
+}
+
+.btn-outline:hover{
+
+    background-color: var(--texto-negro);
+
+    color: white;
+}
+
+.btn-outline:active{
+
+    transform: scale(0.97);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px){
-    .project-form {
+
+    .titulo_principal h1{
+
+        font-size: 2.2rem;
+    }
+
+    .cards{
+
         grid-template-columns: 1fr;
     }
 }

@@ -1,0 +1,86 @@
+.footer{
+
+    width: 100%;
+
+    background-color: var(--nav-bg);
+
+    border-top: 1px solid var(--borde-suave);
+
+    margin-top: 80px;
+}
+
+/* CONTENEDOR */
+
+.footer-container{
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 35px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    gap: 18px;
+}
+
+/* TITULO */
+
+.footer-info h3{
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    color: var(--texto-negro);
+
+    margin-bottom: 8px;
+
+    letter-spacing: 0.5px;
+}
+
+/* TEXTOS */
+
+.footer-info p,
+.footer-equipo p,
+.footer-copy p{
+
+    font-size: 0.85rem;
+
+    color: var(--gris-secundario);
+
+    line-height: 1.6;
+}
+
+.footer-team{
+    font-size: 0.9rem;
+    color: var(--texto-negro);
+}
+
+/* SEPARADOR */
+
+.footer-copy{
+
+    width: 100%;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--borde-suave);
+}
+
+
+.footer-info h3:hover{
+
+    color: var(--acento);
+
+    transition: 0.3s ease;
+}
+
