@@ -54,7 +54,7 @@ const ListaProyectos = () => {
         <div className="container">
             <h2 className="titulo">Lista de Proyectos</h2>
 
-            <form onSubmit={handlerAgregar}>
+            <form className="form-proyecto" onSubmit={handlerAgregar}> 
                 <input
                     type="text"
                     placeholder="Título del proyecto"
@@ -83,6 +83,7 @@ const ListaProyectos = () => {
             </form>
 
             <input
+                className="buscador"
                 type="text"
                 placeholder="Buscar proyecto..."
                 value={busqueda}
