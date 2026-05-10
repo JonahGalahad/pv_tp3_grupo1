@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+    /* Tu paleta importante (La limpia) */
+    --bg: #F8FAFC;              /* Fondo general limpio */
+    --nav-bg: #ffffff;          /* Navbar / secciones */
+    --texto-negro: #020a1f;     /* Texto principal */
+    --gris-secundario: #64748B; /* Texto secundario */
+    --acento: #204099;          /* Azul fuerte principal */
+    --borde-suave: #E2E8F0;     /* Bordes */
+    --sombra: rgba(0, 0, 0, 0.08); /* Sombra suave */
+
+    /* Agregamos esto para que no falte nada */
+    --blanco: #ffffff;
+    --fuente-principal: "Montserrat", sans-serif;
+}
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* BODY */
+body{
+    font-family: var(--fuente-principal);
+    color: var(--texto-negro);
+}
+
+/* WRAPPER GENERAL */
+.app-wrapper{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #90b5da 0%, #E2E8F0 100%);
+    background-repeat: no-repeat;
+}
+
+/* CONTENIDO */
+.content-area{
+    flex: 1;
+    padding: 40px 0;
+    padding-top: 100px; /* Agregado para compensar el fixed del navbar */
+}
+
+/* =========================
+   HEADER / NAVBAR
+========================= */
+
+header{
+    width: 100%;
+}
+
+/* NAV */
+.top-nav{
+    background-color: var(--nav-bg);
+
+    border-bottom: 4px solid var(--acento);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 40px;
+}
+
+/* LOGO */
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo p{
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* LINKS */
+.nav-links{
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a{
+    text-decoration: none;
+
+    color: var(--texto-negro);
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.nav-links a:hover{
+    color: var(--acento);
+}
+
+/* LINK ACTIVO */
+.nav-links .active{
+    color: var(--acento);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer-proyectos{
+    background-color: var(--nav-bg);
+
+    margin-top: 60px;
+
+    border-top: 2px solid var(--borde-suave);
+}
+
+.footer-contenedor{
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 40px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.footer-info h3{
+    margin-bottom: 10px;
+}
+
+.footer-info p,
+.footer-equipo p,
+.footer-final p{
+    color: var(--gris-secundario);
+}
