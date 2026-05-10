@@ -1,42 +1,108 @@
 import { useState } from 'react';
 import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
-import "../css/header.css"
+import "../css/header.css";
 
 const ListaProyectos = () => {
-    // Estado para almacenar la lista de proyectos
-    // "proyectos" es el estado actual, "setProyectos" es la función para actualizarlo
-    // proyectService.obtenerProyectos() se llama para obtener la lista inicial de proyectos desde el servicio
     const [proyectos, setProyectos] = useState(proyectService.obtenerProyectos());
 
-    // Botón para eliminar el proyecto (1)
-    // Creamos una Nueva funcion para llamar a la funcion eliminarProyecto del servicio y actualizar el estado local de proyectos
+    const [busqueda, setBusqueda] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [estado, setEstado] = useState("");
+
+    const actualizarProyectos = () => {
+        setProyectos(proyectService.obtenerProyectos());
+    };
+
     const handlerEliminar = (id) => {
         proyectService.eliminarProyecto(id);
-        setProyectos(proyectService.obtenerProyectos()); // Actualizamos el estado local de proyectos
+        actualizarProyectos();
     };
+
+    const handlerBuscar = (e) => {
+        const texto = e.target.value;
+        setBusqueda(texto);
+
+        if (texto.trim() === "") {
+            actualizarProyectos();
+        } else {
+            setProyectos(proyectService.buscarProyecto(texto));
+        }
+    };
+
+    const handlerAgregar = (e) => {
+        e.preventDefault();
+
+        const nuevoProyecto = {
+            titulo: titulo,
+            categoria: categoria,
+            estado: estado,
+            imagen: "/img/default.png"
+        };
+
+        proyectService.agregarProyecto(nuevoProyecto);
+        actualizarProyectos();
+
+        setTitulo("");
+        setCategoria("");
+        setEstado("");
+        setBusqueda("");
+    };
+
     return(
         <div className="container">
             <h2 className="titulo">Lista de Proyectos</h2>
+
+            <form onSubmit={handlerAgregar}>
+                <input
+                    type="text"
+                    placeholder="Título del proyecto"
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="text"
+                    placeholder="Categoría"
+                    value={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="text"
+                    placeholder="Estado"
+                    value={estado}
+                    onChange={(e) => setEstado(e.target.value)}
+                    required
+                />
+
+                <button type="submit">Agregar proyecto</button>
+            </form>
+
+            <input
+                type="text"
+                placeholder="Buscar proyecto..."
+                value={busqueda}
+                onChange={handlerBuscar}
+            />
+
             <section className="cards">
                 {
                     proyectos.map(element => (
-
                         <article
                             key={element.id}
                             className="proyecto-card"
                         >
-
-                            {/* Imagen */}
                             <img
                                 src={element.imagen}
                                 alt={element.titulo}
                                 className="card-img"
                             />
 
-                            {/* Contenido */}
                             <div className="card-info">
-
                                 <h4>{element.titulo}</h4>
 
                                 <span
@@ -59,15 +125,13 @@ const ListaProyectos = () => {
                                 >
                                     Eliminar
                                 </button>
-
                             </div>
-
                         </article>
                     ))
                 }
             </section>
         </div>
-    )      
-        
+    );
 };
+
 export default ListaProyectos;

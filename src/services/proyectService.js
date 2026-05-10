@@ -26,9 +26,12 @@ const proyectService = ( () => {
     };
     
     // Funcion para buscar y retornar un proyecto basandose en el titulo
+    // 1er cambio 
     const buscarProyecto = (text) => {
-        return proyectos.filter(({titulo}) => titulo.toLowerCase().includes(text.toLowerCase()));
-    };
+    return proyectos.filter((proyecto) =>
+        proyecto.titulo.toLowerCase().includes(text.toLowerCase())
+    );
+};
 
     return {
         obtenerProyectos,
