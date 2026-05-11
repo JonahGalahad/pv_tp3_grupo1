@@ -3,6 +3,9 @@ import { useState } from 'react'
 //import viteLogo from './assets/vite.svg'
 //import heroImg from './assets/hero.png'
 //import './App.css'
+import Navbar from './components/Navbar';
+import Header from './components/header';
+import Footer from './components/Footer';
 import './css/styles.css'
 import './css/listaProyectos.css'
 import ListaProyectos from './components/ListaProyectos.jsx'
@@ -12,7 +15,10 @@ const App = () => {
     <div className="app-wrapper">
       
       <main className='content-area'>
+        <Navbar/>
+        <Header/>
         <ListaProyectos/>
+        <Footer/>
       </main>
       
 
