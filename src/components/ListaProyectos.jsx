@@ -2,6 +2,7 @@ import { useState } from 'react';
 import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
 import "../css/header.css";
+import ProyectoCard from "./ProyectoCard";
 
 const ListaProyectos = () => {
     const [proyectos, setProyectos] = useState(proyectService.obtenerProyectos());
@@ -54,7 +55,7 @@ const ListaProyectos = () => {
         <div className="container">
             <h2 className="titulo">Lista de Proyectos</h2>
 
-            <form className="form-proyecto" onSubmit={handlerAgregar}> 
+            <form onSubmit={handlerAgregar}>
                 <input
                     type="text"
                     placeholder="Título del proyecto"
@@ -83,7 +84,6 @@ const ListaProyectos = () => {
             </form>
 
             <input
-                className="buscador"
                 type="text"
                 placeholder="Buscar proyecto..."
                 value={busqueda}
@@ -93,41 +93,17 @@ const ListaProyectos = () => {
             <section className="cards">
                 {
                     proyectos.map(element => (
-                        <article
-                            key={element.id}
-                            className="proyecto-card"
-                        >
-                            <img
-                                src={element.imagen}
-                                alt={element.titulo}
-                                className="card-img"
-                            />
 
-                            <div className="card-info">
-                                <h4>{element.titulo}</h4>
 
-                                <span
-                                    className={`badge ${
-                                        element.estado === "Finalizado"
-                                        ? "done"
-                                        : "process"
-                                    }`}
-                                >
-                                    {element.estado}
-                                </span>
 
-                                <p className="texto-categoria">
-                                    Categoría: {element.categoria}
-                                </p>
+<ProyectoCard
+    key={element.id}
+    proyecto={element}
+    onEliminar={handlerEliminar}
+/>
 
-                                <button
-                                    className="btn-outline"
-                                    onClick={() => handlerEliminar(element.id)}
-                                >
-                                    Eliminar
-                                </button>
-                            </div>
-                        </article>
+
+
                     ))
                 }
             </section>
