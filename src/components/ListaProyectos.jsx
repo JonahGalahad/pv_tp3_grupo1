@@ -38,7 +38,19 @@ const ListaProyectos = () => {
             titulo: titulo,
             categoria: categoria,
             estado: estado,
-            imagen: "/img/default.png"
+            imagen: "/img/default.png",
+            descripcion: "Descripción no disponible.",
+            recursos: [
+                "PDF",
+                "GitHub",
+                "Drive"
+            ],
+            equipo: [
+                {
+                    nombre: "Equipo de desarrollo",
+                    rol: "Desarrollo"
+                }
+            ]
         };
 
         proyectService.agregarProyecto(nuevoProyecto);
