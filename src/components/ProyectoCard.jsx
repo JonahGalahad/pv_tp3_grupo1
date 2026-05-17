@@ -1,24 +1,56 @@
-const ProyectoCard = ({ proyecto, onVerDetalle, onEliminarProyecto }) => {
+import DetalleProyecto from "./DetalleProyecto";
 
-    const {id, titulo, categoria, estado} = proyecto;
-    //Debe ser la misma estructura que el proyecto, pero con los datos que se quieran mostrar en la card, por ejemplo: titulo, descripcion, imagen, etc.
-    return(
-        <article className="card">
-            <div>
-                <h3>{titulo}</h3>
-                <span className={`badge ${estado === "Finalizado" ? "done" : "process"}`}>
-                    {estado}
-                </span>
-                <p>
-                    <strong>Categoría:</strong>
-                    {categoria}
+function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
+
+    const { id, titulo, categoria, estado, imagen } = proyecto;
+
+    return (
+        <div className={`proyecto-card ${isSelected ? "seleccionado":""}`}>
+            {imagen && (
+                <img
+                    className="card-img"
+                    src={imagen}
+                    alt={titulo}
+                />
+            )}
+            {/*info de la carta*/}
+            <div className="card-info">
+                <h4> {titulo} </h4>
+
+                <p className="texto-categoria">
+                    <strong>Categoría:</strong> {categoria}
                 </p>
+
+                <p className={`badge ${estado === "Finalizado" ? "done" : "process"}`}
+                >
+                    <strong>Estado:</strong> {estado}
+                </p>
+
+                {/*botones de eliminacion/verDetalle*/}
+                <div className="botones-card"> {/* el div no tiene css lo agrego juan */}
+                    <button
+                        className="btn-outline"
+                        onClick={() => onVerDetalle(proyecto)}
+                    >
+                        {isSelected ? "Ocultar Detalle" : "Ver Detalle"}
+                    </button>
+                    <button
+                        className="btn-outline"
+                        onClick={() => onEliminar(id)}
+                    >
+                        Eliminar
+                    </button>
+                </div>
+                {
+                    isSelected && (
+                        <div className="card-detalle">
+                            <DetalleProyecto proyecto={proyecto} inline />
+                        </div>
+                    )
+                }
             </div>
-            <div>
-                <button className="btn-detail" onClick={() => onVerDetalle(id)}>Ver Detalle</button>
-                <button className="btn-delete" onClick={() => onEliminarProyecto(id)}>Eliminar</button>
-            </div>
-        </article>
+        </div>
     );
 }
+
 export default ProyectoCard;

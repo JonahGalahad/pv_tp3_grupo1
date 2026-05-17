@@ -287,7 +287,8 @@ body{
     margin-bottom: 25px;
 }
 
-.form-proyecto input{
+.form-proyecto input,
+.form-proyecto textarea{
 
     padding: 14px 16px;
 
@@ -306,7 +307,8 @@ body{
     box-shadow 0.3s ease;
 }
 
-.form-proyecto input:focus{
+.form-proyecto input:focus,
+.form-proyecto textarea:focus{
 
     outline: none;
 

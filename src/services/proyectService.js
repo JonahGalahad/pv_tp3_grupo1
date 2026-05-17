@@ -3,208 +3,80 @@ const proyectService = ( () => {
     // Array de proyectos para simular una base de datos
     let proyectos = [
         // Categorias: "En proceso", "Finalizado", "En espera", "Cancelado", "En revisión"
-        { 
-            id: 1, 
-            titulo: "Sistema de Gestión de Biblioteca", 
-            categoria: "Programación", 
-            estado: "En proceso", 
+        {
+            id: 1,
+            titulo: "Sistema de Gestión de Biblioteca",
+            categoria: "Programación",
+            estado: "En proceso",
             imagen: "/img/biblioteca.png",
-            descripcion: `Sistema orientado a la administración de libros,préstamos y usuarios dentro de una biblioteca. 
-            Permite mejorar la organización y automatizar procesos internos de registro y control.`,
-            
+            descripcion: "Nuestro sistema de gestión de biblioteca permite registrar libros, préstamos y devoluciones de forma intuitiva. Está pensado para bibliotecas escolares y municipales, con búsquedas rápidas y un panel de administración sencillo.\n\nEl proyecto incluye un diseño responsive, validación de formularios y una base de datos simulada para que los estudiantes practiquen CRUD en la interfaz.",
             recursos: [
-                "PDF del proyecto",
-                "Repositorio GitHub",
-                "Documentación en Drive" 
+                { nombre: "Manual en PDF", link: "https://example.com/biblioteca.pdf" },
+                { nombre: "Carpeta de diseño en Drive", link: "https://drive.google.com/drive/folders/example" },
+                { nombre: "Repositorio en GitHub", link: "https://github.com/example/biblioteca" }
             ],
-
             equipo: [
-                {
-                    nombre: "Sol Pizarro",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Juan Arze",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Ariana Vasquez",
-                    rol: "Diseño"
-                },
-                {
-                    nombre: "Jonatan Zarate",
-                    rol: "Programación"
-                },
-                {
-                    nombre: "Esteban Vera",
-                    rol: "Maquetación"
-                }
+                { nombre: "Ari", rol: "Frontend" },
+                { nombre: "Juan", rol: "Líder de proyecto" }
             ]
         },
-        { 
-            id: 2, 
-            titulo: "Aplicación para Organización de Tareas", 
-            categoria: "Programación", 
-            estado: "Finalizado", 
+        {
+            id: 2,
+            titulo: "Aplicación para Organización de Tareas",
+            categoria: "Programación",
+            estado: "Finalizado",
             imagen: "/img/tareas.png",
-            descripcion: `
-                Aplicación desarrollada para facilitar la organización
-                de tareas diarias y académicas mediante listas dinámicas
-                y recordatorios personalizados.
-
-                El sistema permite mejorar la productividad de los usuarios,
-                optimizando el seguimiento de actividades pendientes y finalizadas.`,
-
+            descripcion: "Esta aplicación ayuda a organizar tareas diarias, incluir fechas de vencimiento y clasificar por prioridades. El objetivo fue construir una interfaz clara y funcional para usuarios que necesitan priorizar su trabajo.\n\nIncluye notificaciones visuales, filtros por estado y un sistema de etiquetas para agrupar tareas similares.",
             recursos: [
-                "PDF de documentación",
-                "Repositorio GitHub",
-                "Drive compartido"
+                { nombre: "Guía de usuario en PDF", link: "https://example.com/tareas.pdf" },
+                { nombre: "Documentación en Drive", link: "https://drive.google.com/drive/folders/example2" },
+                { nombre: "Repositorio en GitHub", link: "https://github.com/example/tareas" }
             ],
             equipo: [
-                {
-                    nombre: "Sol Pizarro",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Juan Arze",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Ariana Vasquez",
-                    rol: "Diseño"
-                },
-                {
-                    nombre: "Jonatan Zarate",
-                    rol: "Programación"
-                },
-                {
-                    nombre: "Esteban Vera",
-                    rol: "Maquetación"
-                }
+                { nombre: "María", rol: "Diseño UI" },
+                { nombre: "Carlos", rol: "Backend" }
             ]
         },
-        { 
-            id: 3, 
-            titulo: "Sitio Web Institucional", 
-            categoria: "Diseño", 
-            estado: "En espera", 
+        {
+            id: 3,
+            titulo: "Sitio Web Institucional",
+            categoria: "Diseño",
+            estado: "En espera",
             imagen: "/img/sitioweb.png",
-             descripcion: `
-                Sitio web institucional pensado para representar de manera
-                visual e informativa a una organización educativa y sus servicios.
-
-                Incluye secciones de navegación intuitiva, diseño responsive
-                y contenido multimedia orientado a mejorar la experiencia del usuario.`,
-
+            descripcion: "El sitio web institucional está pensado para una comunicación clara entre la organización y sus visitantes. Tiene secciones de servicios, contacto y noticias, con un estilo moderno y accesible.\n\nEl proyecto prioriza la usabilidad y la estructura de información para facilitar el acceso a contenido relevante desde cualquier dispositivo.",
             recursos: [
-                "Manual de diseño PDF",
-                "Repositorio GitHub",
-                "Prototipo en Drive"
+                { nombre: "Propuesta en PDF", link: "https://example.com/sitioweb.pdf" },
+                { nombre: "Diseño en Drive", link: "https://drive.google.com/drive/folders/example3" },
+                { nombre: "Repositorio en GitHub", link: "https://github.com/example/sitioweb" }
             ],
             equipo: [
-                {
-                    nombre: "Sol Pizarro",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Juan Arze",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Ariana Vasquez",
-                    rol: "Diseño"
-                },
-                {
-                    nombre: "Jonatan Zarate",
-                    rol: "Programación"
-                },
-                {
-                    nombre: "Esteban Vera",
-                    rol: "Maquetación"
-                }
+                { nombre: "Lucía", rol: "Desarrollo Frontend" },
+                { nombre: "Diego", rol: "Contenido" }
             ]
         },
-        { 
-            id: 4, 
-            titulo: "Registro de Alumnos", 
-            categoria: "Programación", 
-            estado: "En revisión", 
-            imagen: "/img/regist.png",
-            descripcion: `
-                Sistema creado para administrar el registro de estudiantes,
-                incluyendo altas, bajas y modificaciones de información académica.
-
-                El proyecto busca automatizar procesos administrativos y
-                facilitar la gestión de datos dentro de instituciones educativas.`,
-
+        {
+            id: 4,
+            titulo: "Registro de Alumnos",
+            categoria: "Programación",
+            estado: "En revisión",
+            descripcion: "La herramienta de registro de alumnos centraliza datos de estudiantes y simplifica la gestión escolar. Permite cargar datos personales, clases asignadas y estados académicos con una interfaz clara.\n\nEl proyecto está diseñado para trabajar en conjunto con personal administrativo, reduciendo el tiempo de carga manual y mejorando la búsqueda de información."
+        },
+        {
+            id: 5,
+            titulo: "Plataforma de Cursos Online",
+            categoria: "Educación",
+            estado: "Cancelado",
+            imagen: "/img/cursos-online.jpg",
+            descripcion: "La plataforma de cursos online proyectaba administrar cursos, inscripciones y certificaciones de forma automatizada. Incluía perfiles de estudiante, seguimiento de progreso y materiales de soporte.\n\nEl plan técnico abarcaba un sistema de roles y un panel de administración para tutores, con una experiencia didáctica amigable y adaptable.",
             recursos: [
-                "PDF del sistema",
-                "Repositorio GitHub",
-                "Base de datos en Drive"
+                { nombre: "Resumen en PDF", link: "https://example.com/cursos.pdf" },
+                { nombre: "Carpeta de Drive", link: "https://drive.google.com/drive/folders/example5" },
+                { nombre: "Repositorio en GitHub", link: "https://github.com/example/cursos" }
             ],
             equipo: [
-                {
-                    nombre: "Sol Pizarro",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Juan Arze",
-                    rol: "Desarrollo"
-                },
-                {
-                    nombre: "Ariana Vasquez",
-                    rol: "Diseño"
-                },
-                {
-                    nombre: "Jonatan Zarate",
-                    rol: "Programación"
-                },
-                {
-                    nombre: "Esteban Vera",
-                    rol: "Maquetación"
-                }
+                { nombre: "Valentina", rol: "UX" },
+                { nombre: "Diego", rol: "Arquitecto de software" }
             ]
-        },
-        { 
-            id: 5, 
-            titulo: "Plataforma de Cursos Online", 
-            categoria: "Educación", 
-            estado: "Cancelado", 
-            imagen: "/img/cursos-online.jpg", 
-            descripcion: `
-            Plataforma orientada a la publicación y administración
-            de cursos virtuales para estudiantes y docentes.
-
-            El sistema incluía herramientas para subir contenido,
-            gestionar usuarios y realizar seguimiento del progreso académico.`,
-
-        recursos: [
-            "Documentación PDF",
-            "Repositorio GitHub",
-            "Archivos compartidos en Drive"
-        ],
-        equipo: [
-            {
-                nombre: "Sol Pizarro",
-                rol: "Desarrollo"
-            },
-            {
-                nombre: "Juan Arze",
-                rol: "Desarrollo"
-            },
-            {
-                nombre: "Ariana Vasquez",
-                rol: "Diseño"
-            },
-            {
-                nombre: "Jonatan Zarate",
-                rol: "Programación"
-            },
-            {
-                nombre: "Esteban Vera",
-                rol: "Maquetación"
-            }
-        ]
         }
     ];
 
