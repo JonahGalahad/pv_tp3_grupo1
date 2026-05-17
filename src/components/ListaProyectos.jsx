@@ -12,6 +12,14 @@ const ListaProyectos = () => {
     const [titulo, setTitulo] = useState("");
     const [categoria, setCategoria] = useState("");
     const [estado, setEstado] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [recursoPdf, setRecursoPdf] = useState("");
+    const [recursoDrive, setRecursoDrive] = useState("");
+    const [recursoGithub, setRecursoGithub] = useState("");
+    const [miembro1, setMiembro1] = useState("");
+    const [rol1, setRol1] = useState("");
+    const [miembro2, setMiembro2] = useState("");
+    const [rol2, setRol2] = useState("");
     //se puede usar para el componente detalle, contiene proyecto
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null); 
 
@@ -38,11 +46,25 @@ const ListaProyectos = () => {
     const handlerAgregar = (e) => {
         e.preventDefault();
 
+        const recursos = [
+            { nombre: "Documento PDF", link: recursoPdf },
+            { nombre: "Carpeta Drive", link: recursoDrive },
+            { nombre: "Repositorio GitHub", link: recursoGithub }
+        ].filter((recurso) => recurso.link.trim() !== "");
+
+        const equipo = [
+            { nombre: miembro1, rol: rol1 },
+            { nombre: miembro2, rol: rol2 }
+        ].filter((persona) => persona.nombre.trim() !== "" && persona.rol.trim() !== "");
+
         const nuevoProyecto = {
-            titulo: titulo,
-            categoria: categoria,
-            estado: estado,
-            imagen: "/img/default.png"
+            titulo,
+            categoria,
+            estado,
+            imagen: "/img/default.png",
+            descripcion: descripcion,
+            recursos,
+            equipo
         };
 
         proyectService.agregarProyecto(nuevoProyecto);
@@ -51,6 +73,14 @@ const ListaProyectos = () => {
         setTitulo("");
         setCategoria("");
         setEstado("");
+        setDescripcion("");
+        setRecursoPdf("");
+        setRecursoDrive("");
+        setRecursoGithub("");
+        setMiembro1("");
+        setRol1("");
+        setMiembro2("");
+        setRol2("");
         setBusqueda("");
     };
 
@@ -93,6 +123,68 @@ const ListaProyectos = () => {
                     required
                 />
 
+                <textarea
+                    placeholder="Descripción extendida (mínimo 2 párrafos)"
+                    value={descripcion}
+                    onChange={(e) => setDescripcion(e.target.value)}
+                    rows={4}
+                    required
+                />
+
+                <input
+                    type="url"
+                    placeholder="Link PDF"
+                    value={recursoPdf}
+                    onChange={(e) => setRecursoPdf(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="url"
+                    placeholder="Link Drive"
+                    value={recursoDrive}
+                    onChange={(e) => setRecursoDrive(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="url"
+                    placeholder="Link GitHub"
+                    value={recursoGithub}
+                    onChange={(e) => setRecursoGithub(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="text"
+                    placeholder="Nombre del integrante 1"
+                    value={miembro1}
+                    onChange={(e) => setMiembro1(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="text"
+                    placeholder="Rol del integrante 1"
+                    value={rol1}
+                    onChange={(e) => setRol1(e.target.value)}
+                    required
+                />
+
+                <input
+                    type="text"
+                    placeholder="Nombre del integrante 2 (opcional)"
+                    value={miembro2}
+                    onChange={(e) => setMiembro2(e.target.value)}
+                />
+
+                <input
+                    type="text"
+                    placeholder="Rol del integrante 2 (opcional)"
+                    value={rol2}
+                    onChange={(e) => setRol2(e.target.value)}
+                />
+
                 <button type="submit">Agregar proyecto</button>
             </form>
 
@@ -103,11 +195,7 @@ const ListaProyectos = () => {
                 value={busqueda}
                 onChange={handlerBuscar}
             />
-            {/*Renderizado condicional*/}
-            {/*muesta detalle si el boton detalle es seleccionado*/}
-            {proyectoSeleccionado && (
-                <DetalleProyecto/>
-            )}
+            {/*Renderizado condicional: el detalle se muestra dentro de cada card cuando está seleccionado*/}
 
             <section className="cards">
                 {

@@ -6,11 +6,13 @@ function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
 
     return (
         <div className={`proyecto-card ${isSelected ? "seleccionado":""}`}>
-            <img
-                className="card-img"
-                src={imagen}
-                alt={titulo}
-            />
+            {imagen && (
+                <img
+                    className="card-img"
+                    src={imagen}
+                    alt={titulo}
+                />
+            )}
             {/*info de la carta*/}
             <div className="card-info">
                 <h4> {titulo} </h4>
@@ -39,6 +41,13 @@ function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
                         Eliminar
                     </button>
                 </div>
+                {
+                    isSelected && (
+                        <div className="card-detalle">
+                            <DetalleProyecto proyecto={proyecto} inline />
+                        </div>
+                    )
+                }
             </div>
         </div>
     );
