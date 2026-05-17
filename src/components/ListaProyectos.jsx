@@ -7,19 +7,25 @@ import DetalleProyecto from './DetalleProyecto.jsx';
 
 const ListaProyectos = () => {
     const [proyectos, setProyectos] = useState(proyectService.obtenerProyectos());
-
     const [busqueda, setBusqueda] = useState("");
-    const [titulo, setTitulo] = useState("");
-    const [categoria, setCategoria] = useState("");
-    const [estado, setEstado] = useState("");
-    const [descripcion, setDescripcion] = useState("");
-    const [recursoPdf, setRecursoPdf] = useState("");
-    const [recursoDrive, setRecursoDrive] = useState("");
-    const [recursoGithub, setRecursoGithub] = useState("");
-    const [miembro1, setMiembro1] = useState("");
-    const [rol1, setRol1] = useState("");
-    const [miembro2, setMiembro2] = useState("");
-    const [rol2, setRol2] = useState("");
+    
+    const [formData, setFormData] = useState({
+        titulo: "",
+        categoria: "",
+        estado: "",
+        descripcion: "",
+        recursoPdf: "",
+        recursoDrive: "",
+        recursoGithub: "",
+        miembro1: "",
+        rol1: "",
+        miembro2: "",
+        rol2: ""
+    });
+
+    const {  titulo,    categoria,    estado,    descripcion,    recursoPdf,    recursoDrive,    recursoGithub,
+                miembro1,    rol1,    miembro2,    rol2} = formData;
+                
     //se puede usar para el componente detalle, contiene proyecto
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null); 
 
@@ -70,18 +76,25 @@ const ListaProyectos = () => {
         proyectService.agregarProyecto(nuevoProyecto);
         actualizarProyectos();
 
-        setTitulo("");
-        setCategoria("");
-        setEstado("");
-        setDescripcion("");
-        setRecursoPdf("");
-        setRecursoDrive("");
-        setRecursoGithub("");
-        setMiembro1("");
-        setRol1("");
-        setMiembro2("");
-        setRol2("");
+        setFormData({
+            titulo: "",
+            categoria: "",
+            estado: "",
+            descripcion: "",
+            recursoPdf: "",
+            recursoDrive: "",
+            recursoGithub: "",
+            miembro1: "",
+            rol1: "",
+            miembro2: "",
+            rol2: ""
+        });
         setBusqueda("");
+    };
+
+    const handlerChange = (e) => {
+        const { name, value } = e.target;
+            setFormData({...formData, [name]: value  });
     };
 
     const handlerVerDetalle = (proyecto) => {
@@ -102,31 +115,35 @@ const ListaProyectos = () => {
                 <input
                     type="text"
                     placeholder="Título del proyecto"
+                    name="titulo"
                     value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="text"
                     placeholder="Categoría"
+                    name="categoria"
                     value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="text"
                     placeholder="Estado"
+                    name="estado"
                     value={estado}
-                    onChange={(e) => setEstado(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <textarea
                     placeholder="Descripción extendida (mínimo 2 párrafos)"
+                    name="descripcion"
                     value={descripcion}
-                    onChange={(e) => setDescripcion(e.target.value)}
+                    onChange={handlerChange}
                     rows={4}
                     required
                 />
@@ -134,55 +151,62 @@ const ListaProyectos = () => {
                 <input
                     type="url"
                     placeholder="Link PDF"
+                    name="recursoPdf"
                     value={recursoPdf}
-                    onChange={(e) => setRecursoPdf(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="url"
                     placeholder="Link Drive"
+                    name= "recursoDrive"
                     value={recursoDrive}
-                    onChange={(e) => setRecursoDrive(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="url"
                     placeholder="Link GitHub"
+                    name="recursoGithub"
                     value={recursoGithub}
-                    onChange={(e) => setRecursoGithub(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="text"
                     placeholder="Nombre del integrante 1"
+                    name="miembro1"
                     value={miembro1}
-                    onChange={(e) => setMiembro1(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="text"
                     placeholder="Rol del integrante 1"
+                    name="rol1"
                     value={rol1}
-                    onChange={(e) => setRol1(e.target.value)}
+                    onChange={handlerChange}
                     required
                 />
 
                 <input
                     type="text"
                     placeholder="Nombre del integrante 2 (opcional)"
+                    name="miembro2"
                     value={miembro2}
-                    onChange={(e) => setMiembro2(e.target.value)}
+                    onChange={handlerChange}
                 />
 
                 <input
                     type="text"
                     placeholder="Rol del integrante 2 (opcional)"
+                    name="rol2"
                     value={rol2}
-                    onChange={(e) => setRol2(e.target.value)}
+                    onChange={handlerChange}
                 />
 
                 <button type="submit">Agregar proyecto</button>
