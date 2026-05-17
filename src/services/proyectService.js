@@ -16,7 +16,7 @@ const proyectService = ( () => {
                 { nombre: "Repositorio en GitHub", link: "https://github.com/example/biblioteca" }
             ],
             equipo: [
-                { nombre: "Ari", rol: "Frontend" },
+                { nombre: "Ariana", rol: "Frontend" },
                 { nombre: "Juan", rol: "Líder de proyecto" }
             ]
         },
@@ -33,8 +33,8 @@ const proyectService = ( () => {
                 { nombre: "Repositorio en GitHub", link: "https://github.com/example/tareas" }
             ],
             equipo: [
-                { nombre: "María", rol: "Diseño UI" },
-                { nombre: "Carlos", rol: "Backend" }
+                { nombre: "Ariana", rol: "Diseño UI" },
+                { nombre: "Jonatan", rol: "Backend" }
             ]
         },
         {
@@ -50,8 +50,8 @@ const proyectService = ( () => {
                 { nombre: "Repositorio en GitHub", link: "https://github.com/example/sitioweb" }
             ],
             equipo: [
-                { nombre: "Lucía", rol: "Desarrollo Frontend" },
-                { nombre: "Diego", rol: "Contenido" }
+                { nombre: "Esteban", rol: "Desarrollo Frontend" },
+                { nombre: "Jonatan", rol: "Contenido" }
             ]
         },
         {
@@ -59,7 +59,17 @@ const proyectService = ( () => {
             titulo: "Registro de Alumnos",
             categoria: "Programación",
             estado: "En revisión",
-            descripcion: "La herramienta de registro de alumnos centraliza datos de estudiantes y simplifica la gestión escolar. Permite cargar datos personales, clases asignadas y estados académicos con una interfaz clara.\n\nEl proyecto está diseñado para trabajar en conjunto con personal administrativo, reduciendo el tiempo de carga manual y mejorando la búsqueda de información."
+            imagen: "/img/regist.png",
+            descripcion: "La herramienta de registro de alumnos centraliza datos de estudiantes y simplifica la gestión escolar. Permite cargar datos personales, clases asignadas y estados académicos con una interfaz clara.\n\nEl proyecto está diseñado para trabajar en conjunto con personal administrativo, reduciendo el tiempo de carga manual y mejorando la búsqueda de información.",
+            recursos: [
+                { nombre: "Informe en PDF", link: "https://example.com/registro-alumnos.pdf" },
+                { nombre: "Esquema en Drive", link: "https://drive.google.com/drive/folders/example4" },
+                { nombre: "Repositorio en GitHub", link: "https://github.com/example/registro-alumnos" }
+            ],
+            equipo: [
+                { nombre: "Juan", rol: "Backend" },
+                { nombre: "Sol", rol: "QA" }
+            ]
         },
         {
             id: 5,
@@ -74,8 +84,8 @@ const proyectService = ( () => {
                 { nombre: "Repositorio en GitHub", link: "https://github.com/example/cursos" }
             ],
             equipo: [
-                { nombre: "Valentina", rol: "UX" },
-                { nombre: "Diego", rol: "Arquitecto de software" }
+                { nombre: "Ariana", rol: "UX" },
+                { nombre: "Sol", rol: "Arquitecto de software" }
             ]
         }
     ];

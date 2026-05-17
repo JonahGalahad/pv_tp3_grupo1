@@ -255,6 +255,13 @@ body{
     transform: scale(0.97);
 }
 
+/* Separar ligeramente los botones dentro de la tarjeta */
+.botones-card{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -301,6 +308,8 @@ body{
     font-family: var(--fuente-principal);
 
     background-color: white;
+
+    resize: none;
 
     transition:
     border-color 0.3s ease,

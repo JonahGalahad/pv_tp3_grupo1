@@ -2,75 +2,15 @@ import "../css/DetalleProyecto.css";
 
 const DetalleProyecto = ({ proyecto, inline = false }) => {
 
-    // Si no hay proyecto seleccionado
-    if (!proyecto) {
-
-        return (
-
-            <section className="detalle-vacio">
-
-                <h2>
-                    Seleccioná un proyecto
-                </h2>
-
-                <p>
-                    Elegí un proyecto para ver su información detallada.
-                </p>
-
-            </section>
-        );
-    }
-
-    if (inline) {
-        return (
-            <section className="detalle-proyecto-embed">
-                <div className="detalle-seccion">
-                    <h3>Descripción</h3>
-                    {
-                        (() => {
-                            const desc = proyecto.descripcion || "";
-                            let paras = desc.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
-
-                            if (paras.length < 2) {
-                                const sentences = desc.match(/[^.!?]+[.!?]*/g) || [];
-                                if (sentences.length >= 2) {
-                                    const half = Math.ceil(sentences.length / 2);
-                                    paras = [
-                                        sentences.slice(0, half).join(' ').trim(),
-                                        sentences.slice(half).join(' ').trim()
-                                    ].filter(Boolean);
-                                }
-                            }
-
-                            if (paras.length === 0) paras = ["Descripción no disponible.", ""];
-                            if (paras.length === 1) paras.push(paras[0]);
-
-                            return paras.map((p, i) => (
-                                <p key={i}>{p}</p>
-                            ));
-                        })()
-                    }
-                </div>
-            </section>
-        );
-    }
+    const detalleClass = inline ? "detalle-proyecto-embed" : "detalle-proyecto";
 
     return (
 
-        <section className={inline ? "detalle-proyecto-embed" : "detalle-proyecto"}>
+        <section className={detalleClass}>
 
-            {/* IMAGEN + INFO */}
+            {/* INFO */}
 
             <div className="detalle-header">
-
-                {proyecto.imagen && (
-                    <img
-                        src={proyecto.imagen}
-                        alt={proyecto.titulo}
-                        className="detalle-img"
-                    />
-                )}
-
                 <div className="detalle-info">
 
                     <span
