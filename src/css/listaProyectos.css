@@ -255,6 +255,13 @@ body{
     transform: scale(0.97);
 }
 
+/* Separar ligeramente los botones dentro de la tarjeta */
+.botones-card{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -287,7 +294,8 @@ body{
     margin-bottom: 25px;
 }
 
-.form-proyecto input{
+.form-proyecto input,
+.form-proyecto textarea{
 
     padding: 14px 16px;
 
@@ -301,12 +309,15 @@ body{
 
     background-color: white;
 
+    resize: none;
+
     transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-.form-proyecto input:focus{
+.form-proyecto input:focus,
+.form-proyecto textarea:focus{
 
     outline: none;
 
