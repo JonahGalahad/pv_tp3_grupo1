@@ -21,7 +21,15 @@ function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
                     <strong>Categoría:</strong> {categoria}
                 </p>
 
-                <p className={`badge ${estado === "Finalizado" ? "done" : "process"}`}
+                <p className={`badge 
+                ${estado === "Finalizado" 
+                ? "done" 
+                : estado === "En revisión" 
+                ? "revision"
+                : estado === "Cancelado"
+                ? "cancelado"
+                : "process"
+            }`}
                 >
                     <strong>Estado:</strong> {estado}
                 </p>

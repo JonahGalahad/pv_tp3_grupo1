@@ -41,7 +41,7 @@ const proyectService = ( () => {
             id: 3,
             titulo: "Sitio Web Institucional",
             categoria: "Diseño",
-            estado: "En espera",
+            estado: "En revisión",
             imagen: "/img/sitioweb.png",
             descripcion: "El sitio web institucional está pensado para una comunicación clara entre la organización y sus visitantes. Tiene secciones de servicios, contacto y noticias, con un estilo moderno y accesible.\n\nEl proyecto prioriza la usabilidad y la estructura de información para facilitar el acceso a contenido relevante desde cualquier dispositivo.",
             recursos: [

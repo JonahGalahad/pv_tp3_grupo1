@@ -183,17 +183,23 @@ body{
 }
 
 .process{
-
-    background-color: #dbeafe;
-
+    background-color: #dbeafe; /* celeste */
     color: #1d4ed8;
 }
 
 .done{
-
-    background-color: #dcfce7;
-
+    background-color: #dcfce7; /* verde */
     color: #166534;
+}
+
+.revision{
+    background-color: #ede9fe; /* amarillo suave */
+    color: #6d28d9;
+}
+
+.cancelado{
+    background-color: #fee2e2; /* rojo suave */
+    color: #b91c1c;
 }
 
 /* =========================
