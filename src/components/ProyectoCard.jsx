@@ -22,7 +22,7 @@ function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
                 </p>
 
                 <p className={`badge 
-                ${estado === "Finalizado" 
+                ${proyecto.estadoClase === "Finalizado" 
                 ? "done" 
                 : estado === "En revisión" 
                 ? "revision"
