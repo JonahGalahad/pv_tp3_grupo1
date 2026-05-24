@@ -29,18 +29,6 @@
     flex-wrap: wrap;
 }
 
-/* IMAGEN */
-
-.detalle-img{
-
-    width: 350px;
-
-    height: 240px;
-
-    object-fit: cover;
-
-    border-radius: 16px;
-}
 
 /* INFO */
 

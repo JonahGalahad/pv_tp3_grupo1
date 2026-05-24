@@ -183,17 +183,23 @@ body{
 }
 
 .process{
-
-    background-color: #dbeafe;
-
+    background-color: #dbeafe; /* celeste */
     color: #1d4ed8;
 }
 
 .done{
-
-    background-color: #dcfce7;
-
+    background-color: #dcfce7; /* verde */
     color: #166534;
+}
+
+.revision{
+    background-color: #ede9fe; /* amarillo suave */
+    color: #6d28d9;
+}
+
+.cancelado{
+    background-color: #fee2e2; /* rojo suave */
+    color: #b91c1c;
 }
 
 /* =========================
@@ -255,6 +261,13 @@ body{
     transform: scale(0.97);
 }
 
+/* Separar ligeramente los botones dentro de la tarjeta */
+.botones-card{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -288,7 +301,8 @@ body{
 }
 
 .form-proyecto input,
-.form-proyecto textarea{
+.form-proyecto textarea,
+.form-proyecto select{
 
     padding: 14px 16px;
 
@@ -302,13 +316,16 @@ body{
 
     background-color: white;
 
+    resize: none;
+
     transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .form-proyecto input:focus,
-.form-proyecto textarea:focus{
+.form-proyecto textarea:focus,
+.form-proyecto select:focus{
 
     outline: none;
 
