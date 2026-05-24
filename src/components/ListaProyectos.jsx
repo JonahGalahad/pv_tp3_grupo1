@@ -1,5 +1,5 @@
 import RegistroActividad from "./RegistroActividad";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
 import "../css/header.css";
@@ -15,6 +15,15 @@ const ListaProyectos = () => {
     const [busqueda, setBusqueda] = useState("");
 
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+
+    //Estado Fecha/Hora, ultuma actualizacion
+    const [fechaActualizacion, setFechaActualizacion] = useState(null);
+
+    //USEEFFECTS
+    useEffect(()=>{
+        const now = new Date();
+        setFechaActualizacion(now);
+    },[proyectos]);
 
     const actualizarProyectos = () => {
         setProyectos(proyectService.obtenerProyectos());
@@ -72,7 +81,8 @@ const ListaProyectos = () => {
                     />
                 ))}
             </section>
-            <RegistroActividad fecha="00/00/0000 a las 00:00 hs." />
+            {/* prop de fecha al componenete Registro Actividad */}
+            <RegistroActividad fecha={fechaActualizacion} />
         </div>
     );
 };
