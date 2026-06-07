@@ -1,5 +1,5 @@
 import RegistroActividad from "./RegistroActividad";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
 import "../css/header.css";
@@ -19,19 +19,31 @@ const ListaProyectos = () => {
     //Estado Fecha/Hora, ultuma actualizacion
     const [fechaActualizacion, setFechaActualizacion] = useState(null);
 
+    //Creacion de bandera para controlar la primera carga del componente
+    const bandera = useRef(0);
+    //Estado para proyectos filtrados
+    const [proyectosFiltrados, setProyectosFiltrados] = useState(proyectService.obtenerProyectos());
+
     //USEEFFECTS
     useEffect(()=>{
-        const now = new Date();
-        setFechaActualizacion(now);
+        
+        //Al estar en stric Mode, el useEffect se ejecuta dos veces, por lo que se utiliza la bandera para evitar
+        //que se actualice la fecha de actualizacion al cargar el componente por primera vez
+        bandera.current += 1;
+        if(bandera.current <= 2) return;
+
+        setFechaActualizacion(new Date());
     },[proyectos]);
 
     const actualizarProyectos = () => {
-        setProyectos(proyectService.obtenerProyectos());
+        const lista = proyectService.obtenerProyectos();
+        setProyectos(lista);
+        setProyectosFiltrados(lista);
     };
 
     const handlerEliminar = (id) => {
         proyectService.eliminarProyecto(id);
-        actualizarProyectos();
+        actualizarProyectos(); 
     };
 
     // ← RECIBE EL OBJETO DESDE FORMULARIO
@@ -46,9 +58,13 @@ const ListaProyectos = () => {
         setBusqueda(texto);
 
         if (texto.trim() === "") {
-            actualizarProyectos();
+            setProyectosFiltrados(proyectos);
+
         } else {
-            setProyectos(proyectService.buscarProyecto(texto));
+            setProyectosFiltrados(
+                proyectService.buscarProyecto(texto)
+            );
+
         }
     };
 
@@ -71,7 +87,7 @@ const ListaProyectos = () => {
             />
 
             <section className="cards">
-                {proyectos.map((proyecto) => (
+                {proyectosFiltrados.map((proyecto) => (
                     <ProyectoCard
                         key={proyecto.id}
                         proyecto={proyecto}
@@ -82,7 +98,9 @@ const ListaProyectos = () => {
                 ))}
             </section>
             {/* prop de fecha al componenete Registro Actividad */}
-            <RegistroActividad fecha={fechaActualizacion} />
+            {fechaActualizacion && (
+                <RegistroActividad fecha={fechaActualizacion} />
+            )}
         </div>
     );
 };

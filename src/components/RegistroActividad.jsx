@@ -3,7 +3,6 @@ import "../css/registroActividad.css";
 const RegistroActividad = ({ fecha }) => {
     //Formatear de los datos del prop al formato "dd/mm/aaaa a las hh:mm hs"
     const formatearFecha = (date) => {
-        if(!date) return "Sin registro aun.";
         //.padstart rellena el valora la izquieda con un cero y la longitud total se queda en 2
         const day = String(date.getDate()).padStart(2,"0");
         //get month empieza en 0
