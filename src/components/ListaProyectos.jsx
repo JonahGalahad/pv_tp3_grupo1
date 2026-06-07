@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import RegistroActividad from "./RegistroActividad";
+import { useState, useEffect, useRef } from 'react';
 import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
 import "../css/header.css";
 import ProyectoCard from "./ProyectoCard";
 import DetalleProyecto from './DetalleProyecto.jsx';
 import FormularioProyecto from './FormularioProyecto.jsx';
+import FormularioProyecto from './FormularioProyecto.jsx';
 
 const ListaProyectos = () => {
+    const [proyectos, setProyectos] = useState(
+        proyectService.obtenerProyectos()
+    );
+
     const [proyectos, setProyectos] = useState(
         proyectService.obtenerProyectos()
     );
@@ -16,12 +22,21 @@ const ListaProyectos = () => {
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
     const actualizarProyectos = () => {
-        setProyectos(proyectService.obtenerProyectos());
+        const lista = proyectService.obtenerProyectos();
+        setProyectos(lista);
+        setProyectosFiltrados(lista);
     };
 
     const handlerEliminar = (id) => {
         proyectService.eliminarProyecto(id);
+        actualizarProyectos(); 
+    };
+
+    // ← RECIBE EL OBJETO DESDE FORMULARIO
+    const handlerAgregar = (nuevoProyecto) => {
+        proyectService.agregarProyecto(nuevoProyecto);
         actualizarProyectos();
+        setBusqueda("");
     };
 
     // ← RECIBE EL OBJETO DESDE FORMULARIO
@@ -36,13 +51,15 @@ const ListaProyectos = () => {
         setBusqueda(texto);
 
         if (texto.trim() === "") {
-            actualizarProyectos();
+            setProyectosFiltrados(proyectos);
+
         } else {
             setProyectos(proyectService.buscarProyecto(texto));
         }
     };
 
     const handlerVerDetalle = (proyecto) => {
+        setProyectoSeleccionado((p) => (p?.id === proyecto.id ? null : proyecto));
         setProyectoSeleccionado((p) => (p?.id === proyecto.id ? null : proyecto));
     };
 
@@ -51,8 +68,10 @@ const ListaProyectos = () => {
             <h2 className="titulo">Lista de Proyectos</h2>
 
             <FormularioProyecto onAgregar={handlerAgregar} />
+            <FormularioProyecto onAgregar={handlerAgregar} />
 
             <input
+                className="buscador"
                 className="buscador"
                 type="text"
                 placeholder="Buscar proyecto..."
@@ -71,6 +90,10 @@ const ListaProyectos = () => {
                     />
                 ))}
             </section>
+            {/* prop de fecha al componenete Registro Actividad */}
+            {fechaActualizacion && (
+                <RegistroActividad fecha={fechaActualizacion} />
+            )}
         </div>
     );
 };

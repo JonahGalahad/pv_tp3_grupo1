@@ -1,0 +1,22 @@
+.registro-actividad{
+    margin: 40px auto 20px auto;
+    padding: 16px 22px;
+    width: fit-content;
+    background-color: var(--nav-bg);
+    border: 1px solid var(--borde-suave);
+    border-radius: 14px;
+    box-shadow:
+    0 4px 10px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease;
+}
+
+.registro-actividad:hover{
+    transform: translateY(-2px);
+}
+
+.registro-actividad p{
+    color: var(--gris-secundario);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
