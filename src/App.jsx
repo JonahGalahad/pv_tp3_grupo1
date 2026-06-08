@@ -1,43 +1,44 @@
 import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import reactLogo from './assets/react.svg'
 //import viteLogo from './assets/vite.svg'
 //import heroImg from './assets/hero.png'
 //import './App.css'
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-
-import Dashboard from './components/Dashboard';
-import ListaProyectos from './components/ListaProyectos';
+import Header from './components/header';
+import Footer from './components/footer';
+import './css/styles.css'
+import './css/listaProyectos.css'
+import ListaProyectos from './components/ListaProyectos.jsx'
 import DetalleProyecto from './components/DetalleProyecto';
-import PerfilUsuario from './components/PerfilUsuario';
-
-import { Routes, Route } from 'react-router-dom';
+import PerfilUsuario from "./views/PerfilUsuario";
 
 const App = () => {
   return (
-    <div className="app-wrapper">
+    <BrowserRouter>
 
-      <Navbar />
+      <div className="app-wrapper">
 
-      <main className="content-area">
-        <Routes>
+        <Navbar />
+        <Header />
 
-          <Route path="/" element={<Dashboard />} />
+        <main className="content-area">
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Routes>
+            <Route path="/" element={<ListaProyectos />} />
+            <Route path="/proyectos" element={<ListaProyectos />} />
+            <Route path="/perfil" element={<PerfilUsuario />} />
+            <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+          </Routes>
 
-          <Route path="/proyectos" element={<ListaProyectos />} />
+        </main>
 
-          <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+        <Footer />
 
-          <Route path="/perfil" element={<PerfilUsuario />} />
+      </div>
 
-        </Routes>
-      </main>
-
-      <Footer />
-
-    </div>
+    </BrowserRouter>
   );
 };
 
