@@ -1,4 +1,6 @@
 import "../css/header.css";
+import { useContext } from "react";
+import { UsuarioContext } from "../context/UsuarioContext";
 
 const Header = () => {
     return (
