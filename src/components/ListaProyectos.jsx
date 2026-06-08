@@ -1,5 +1,5 @@
 import RegistroActividad from "./RegistroActividad";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
 import "../css/header.css";
@@ -15,11 +15,25 @@ const ListaProyectos = () => {
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
     const [fechaActualizacion, setFechaActualizacion] = useState(null);
 
+    //Creacion de bandera para controlar la primera carga del componente
+    const bandera = useRef(0);
+
+    //USEEFFECTS
+    useEffect(() => {
+
+        //Al estar en Strict Mode, el useEffect se ejecuta dos veces
+        bandera.current += 1;
+
+        if (bandera.current <= 2) return;
+
+        setFechaActualizacion(new Date());
+
+    }, [proyectos]);
+    
     const actualizarProyectos = () => {
         const lista = proyectService.obtenerProyectos();
         setProyectos(lista);
         setProyectosFiltrados(lista);
-        setFechaActualizacion(new Date());
     };
 
     const handlerEliminar = (id) => {
@@ -40,8 +54,14 @@ const ListaProyectos = () => {
 
         if (texto.trim() === "") {
             setProyectosFiltrados(proyectos);
+
         } else {
             setProyectosFiltrados(proyectService.buscarProyecto(texto));
+
+        } else {
+            setProyectosFiltrados(
+                proyectService.buscarProyecto(texto)
+            );
         }
     };
 
