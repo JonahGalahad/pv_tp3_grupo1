@@ -28,3 +28,8 @@ font-size: 1.25rem;
     transform: translateY(-8px);
     color: var(--acento);
 }
+
+.usuario-info {
+    margin-top: 10px;
+    font-weight: bold;
+}

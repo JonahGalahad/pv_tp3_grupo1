@@ -49,21 +49,18 @@ const ListaProyectos = () => {
     };
 
     const handlerBuscar = (e) => {
-        const texto = e.target.value;
-        setBusqueda(texto);
+    const texto = e.target.value;
+    setBusqueda(texto);
 
-        if (texto.trim() === "") {
-            setProyectosFiltrados(proyectos);
+    if (texto.trim() === "") {
+        setProyectosFiltrados(proyectos);
 
-        } else {
-            setProyectosFiltrados(proyectService.buscarProyecto(texto));
-
-        } else {
-            setProyectosFiltrados(
-                proyectService.buscarProyecto(texto)
-            );
-        }
-    };
+    } else {
+        setProyectosFiltrados(
+            proyectService.buscarProyecto(texto)
+        );
+    }
+};
 
     const handlerVerDetalle = (proyecto) => {
         setProyectoSeleccionado((p) => (p?.id === proyecto.id ? null : proyecto));
