@@ -19,11 +19,11 @@ const App = () => {
 
       <main className="content-area">
         <Routes>
-          <Route path="/" element={<ListaProyectos />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/proyectos" element={<ListaProyectos />} />
           <Route path="/perfil" element={<PerfilUsuario />} />
           <Route path="/proyectos/:id" element={<DetalleProyecto />} />
-          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>
 
