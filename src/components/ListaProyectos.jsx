@@ -53,20 +53,17 @@ const ListaProyectos = () => {
         setBusqueda("");
     };
 
-    const handlerBuscar = (e) => {
-        const texto = e.target.value;
-        setBusqueda(texto);
+// Arze Juan///el filtro de búsqueda se maneja separado del estado proyectos para evitar que escribir en el buscador actualice la fecha y hora 
+const handlerBuscar = (e) => {
+    const texto = e.target.value;
+    setBusqueda(texto);
 
-        if (texto.trim() === "") {
-            setProyectosFiltrados(proyectos);
+    const filtrados = proyectos.filter((proyecto) =>
+        proyecto.nombre.toLowerCase().includes(texto.toLowerCase())
+    );
 
-        } else {
-            setProyectosFiltrados(
-                proyectService.buscarProyecto(texto)
-            );
-
-        }
-    };
+    setProyectosFiltrados(filtrados);
+};
 
     const handlerVerDetalle = (proyecto) => {
         setProyectoSeleccionado((p) => (p?.id === proyecto.id ? null : proyecto));
