@@ -1,6 +1,22 @@
+import { useParams, Link } from "react-router-dom";
 import "../css/DetalleProyecto.css";
+import proyectService from "../services/proyectService";
 
-const DetalleProyecto = ({ proyecto, inline = false }) => {
+const DetalleProyecto = ({ proyecto: proyectoProp, inline = false }) => {
+    const { id } = useParams();
+
+    const proyecto =
+        proyectoProp ||
+        proyectService.buscarProyectoPorId(Number(id));
+
+    if (!proyecto) {
+        return (
+            <section className="detalle-proyecto">
+                <h2>Proyecto no encontrado</h2>
+                <Link to="/proyectos">Volver a proyectos</Link>
+            </section>
+        );
+    }
 
     const detalleClass = inline ? "detalle-proyecto-embed" : "detalle-proyecto";
 

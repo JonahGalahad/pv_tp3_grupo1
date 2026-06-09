@@ -4,37 +4,31 @@ import proyectService from '../services/proyectService.js';
 import "../css/navbar.css";
 import "../css/header.css";
 import ProyectoCard from "./ProyectoCard";
-import DetalleProyecto from './DetalleProyecto.jsx';
 import FormularioProyecto from './FormularioProyecto.jsx';
 
 const ListaProyectos = () => {
     const [proyectos, setProyectos] = useState(
         proyectService.obtenerProyectos()
     );
-
+    const [proyectosFiltrados, setProyectosFiltrados] = useState(proyectos);
     const [busqueda, setBusqueda] = useState("");
-
-    const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
-
-    //Estado Fecha/Hora, ultuma actualizacion
     const [fechaActualizacion, setFechaActualizacion] = useState(null);
 
     //Creacion de bandera para controlar la primera carga del componente
     const bandera = useRef(0);
-    //Estado para proyectos filtrados
-    const [proyectosFiltrados, setProyectosFiltrados] = useState(proyectService.obtenerProyectos());
 
     //USEEFFECTS
-    useEffect(()=>{
-        
-        //Al estar en stric Mode, el useEffect se ejecuta dos veces, por lo que se utiliza la bandera para evitar
-        //que se actualice la fecha de actualizacion al cargar el componente por primera vez
+    useEffect(() => {
+
+        //Al estar en Strict Mode, el useEffect se ejecuta dos veces
         bandera.current += 1;
-        if(bandera.current <= 2) return;
+
+        if (bandera.current <= 2) return;
 
         setFechaActualizacion(new Date());
-    },[proyectos]);
 
+    }, [proyectos]);
+    
     const actualizarProyectos = () => {
         const lista = proyectService.obtenerProyectos();
         setProyectos(lista);
@@ -53,21 +47,17 @@ const ListaProyectos = () => {
         setBusqueda("");
     };
 
-// Arze Juan///el filtro de búsqueda se maneja separado del estado proyectos para evitar que escribir en el buscador actualice la fecha y hora 
-const handlerBuscar = (e) => {
-    const texto = e.target.value;
-    setBusqueda(texto);
+    const handlerBuscar = (e) => {
+        const texto = e.target.value;
+        setBusqueda(texto);
 
-    const filtrados = proyectos.filter((proyecto) =>
-        proyecto.nombre.toLowerCase().includes(texto.toLowerCase())
-    );
-
-    setProyectosFiltrados(filtrados);
-};
-
-    const handlerVerDetalle = (proyecto) => {
-        setProyectoSeleccionado((p) => (p?.id === proyecto.id ? null : proyecto));
+        if (texto.trim() === "") {
+            setProyectosFiltrados(proyectos);
+        } else {
+            setProyectosFiltrados(proyectService.buscarProyecto(texto));
+        }
     };
+
 
     return (
         <div className="container">
@@ -85,13 +75,13 @@ const handlerBuscar = (e) => {
 
             <section className="cards">
                 {proyectosFiltrados.map((proyecto) => (
-                    <ProyectoCard
-                        key={proyecto.id}
-                        proyecto={proyecto}
-                        onEliminar={handlerEliminar}
-                        onVerDetalle={handlerVerDetalle}
-                        isSelected={proyectoSeleccionado?.id === proyecto.id}
-                    />
+
+            <ProyectoCard
+                key={proyecto.id}
+                proyecto={proyecto}
+                onEliminar={handlerEliminar}
+            />
+
                 ))}
             </section>
             {/* prop de fecha al componenete Registro Actividad */}

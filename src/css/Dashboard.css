@@ -1,0 +1,24 @@
+/* Tarjetas de métricas: efecto hover de elevación */
+
+.metrica-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0.75rem ;
+}
+
+.metrica-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) ;
+}
+
+/* Card de bienvenida: bordes redondeados más pronunciados */
+.bienvenida-card {
+    border-radius: 1rem ;
+}
+
+/* Valor numérico grande dentro de cada métrica */
+.metrica-valor {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #1a1a2e;
+}

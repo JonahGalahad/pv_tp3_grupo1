@@ -1,11 +1,11 @@
-import DetalleProyecto from "./DetalleProyecto";
+import { Link } from "react-router-dom";
 
-function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
+function ProyectoCard({ proyecto, onEliminar }) {
 
     const { id, titulo, categoria, estado, imagen } = proyecto;
 
     return (
-        <div className={`proyecto-card ${isSelected ? "seleccionado":""}`}>
+<div className="proyecto-card">
             {imagen && (
                 <img
                     className="card-img"
@@ -36,12 +36,12 @@ function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
 
                 {/*botones de eliminacion/verDetalle*/}
                 <div className="botones-card"> {/* el div no tiene css lo agrego juan */}
-                    <button
-                        className="btn-outline"
-                        onClick={() => onVerDetalle(proyecto)}
-                    >
-                        {isSelected ? "Ocultar Detalle" : "Ver Detalle"}
-                    </button>
+<Link
+    className="btn-outline"
+    to={`/proyectos/${proyecto.id}`}
+>
+    Ver Detalle
+</Link>
                     <button
                         className="btn-outline"
                         onClick={() => onEliminar(id)}
@@ -49,13 +49,7 @@ function ProyectoCard({ proyecto, onEliminar, onVerDetalle,isSelected }) {
                         Eliminar
                     </button>
                 </div>
-                {
-                    isSelected && (
-                        <div className="card-detalle">
-                            <DetalleProyecto proyecto={proyecto} inline />
-                        </div>
-                    )
-                }
+
             </div>
         </div>
     );
