@@ -1,29 +1,35 @@
-import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from './assets/vite.svg'
-//import heroImg from './assets/hero.png'
-//import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import './css/styles.css'
-import './css/listaProyectos.css'
-import ListaProyectos from './components/ListaProyectos.jsx'
+import Header from './components/header';
+import Footer from './components/footer';
+import './css/styles.css';
+import './css/listaProyectos.css';
+import ListaProyectos from './components/ListaProyectos.jsx';
+import DetalleProyecto from './components/DetalleProyecto';
+import PerfilUsuario from "./views/PerfilUsuario";
+import Dashboard from './views/Dashboard.jsx';
+import './css/Dashboard.css';
 
 const App = () => {
-  return(
+  return (
     <div className="app-wrapper">
-      
-      <main className='content-area'>
-        <Navbar/>
-        <Header/>
-        <ListaProyectos/>
-        <Footer/>
-      </main>
-      
+      <Navbar />
+      <Header />
 
+      <main className="content-area">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/proyectos" element={<ListaProyectos />} />
+          <Route path="/perfil" element={<PerfilUsuario />} />
+          <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+        </Routes>
+      </main>
+
+      <Footer />
     </div>
-    
-  )
-}
+  );
+};
+
 export default App;

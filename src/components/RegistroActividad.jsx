@@ -1,4 +1,4 @@
-import "../css/registroActividad.css";
+import "../css/RegistroActividad.css";
 
 const RegistroActividad = ({ fecha }) => {
     //Formatear de los datos del prop al formato "dd/mm/aaaa a las hh:mm hs"

@@ -44,8 +44,8 @@ const FormularioProyecto = ({ onAgregar })=>{
             "Carpeta Drive",
 
             link:
-            recursoDrive
-         },
+            recursoDrive 
+        },
         {
             nombre:
             "Repositorio GitHub",
